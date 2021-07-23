@@ -1,0 +1,21 @@
+{
+	"name": "@industrialshields/rpiplc",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"main": "./lib/addon.js",
+	"repository": {
+		"type": "git",
+		"url": "apps.industrialshields.com:/home/git/rpiplc-node-addon.git"
+	},
+	"scripts": {
+		"test": "node main.js",
+		"version": "./bin/update-version-files"
+	},
+	"gypfile": true,
+	"author": "Industrial Shields by Boot&Work Corp. S.L. <industrialshields@industrialshields.com>",
+	"license": "EUPL-1.2",
+	"dependencies": {
+		"bindings": "^1.5.0"
+	}
+}
