@@ -5,6 +5,7 @@
 			"sources": [
 				"src/analogRead.cpp",
 				"src/analogWrite.cpp",
+				"src/delay.cpp",
 				"src/digitalRead.cpp",
 				"src/digitalWrite.cpp",
 				"src/initPins.cpp",

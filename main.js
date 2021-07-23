@@ -4,7 +4,7 @@ console.log('Version: ' + rpiplc.version());
 
 rpiplc.initPins();
 
-let inputs = [
+let digitalInputs = [
 	0x00002105,
 	0x00002103,
 	0x00002102,
@@ -20,6 +20,6 @@ let inputs = [
 	0x00004801,
 ];
 
-inputs.forEach((input) => {
+digitalInputs.forEach((input) => {
 	console.log(rpiplc.digitalRead(input));
 });
