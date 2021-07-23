@@ -11,7 +11,6 @@
 				"src/initPins.cpp",
 				"src/main.cpp",
 				"src/pinMode.cpp",
-				"src/version.cpp",
 			],
 			"include_dirs": [
 				"/usr/local/include/rpiplc",

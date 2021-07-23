@@ -1,24 +1,45 @@
 #include "fn.h"
+#include "version.h"
 
 #include <assert.h>
 #include <node_api.h>
 
-#define ADD_FUNC(name, fn, desc) \
-	napi_property_descriptor desc = { name, nullptr, fn, nullptr, nullptr, nullptr, napi_default, nullptr };\
-	status = napi_define_properties(env, exports, 1, & desc);\
+napi_status InitVersioning(napi_env env, napi_value exports) {
+	napi_status status;
+
+	napi_value version;
+	status = napi_create_string_utf8(env, AppVersion, NAPI_AUTO_LENGTH, &version);
 	assert(status == napi_ok);
+
+	const napi_property_descriptor descriptors[] = {
+		{ "version", nullptr, nullptr, nullptr, nullptr, version, napi_default, nullptr },
+	};
+	const int numDescriptors = sizeof(descriptors) / sizeof(napi_property_descriptor);
+	return napi_define_properties(env, exports, numDescriptors, descriptors);
+}
+
+napi_status InitMethods(napi_env env, napi_value exports) {
+	const napi_property_descriptor descriptors[] = {
+		{ "analogRead", nullptr, AnalogReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "analogWrite", nullptr, AnalogWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "delay", nullptr, DelayFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "digitalRead", nullptr, DigitalReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "digitalWrite", nullptr, DigitalWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "initPins", nullptr, InitPinsFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "pinMode", nullptr, PinModeFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+	};
+	const int numDescriptors = sizeof(descriptors) / sizeof(napi_property_descriptor);
+	return napi_define_properties(env, exports, numDescriptors, descriptors);
+}
 
 napi_value Init(napi_env env, napi_value exports) {
 	napi_status status;
 
-	ADD_FUNC("analogRead", AnalogReadFn, analogReadDesc);
-	ADD_FUNC("analogWrite", AnalogWriteFn, analogWriteDesc);
-	ADD_FUNC("delay", DelayFn, delayDesc);
-	ADD_FUNC("digitalRead", DigitalReadFn, digitalReadDesc);
-	ADD_FUNC("digitalWrite", DigitalWriteFn, digitalWriteDesc);
-	ADD_FUNC("initPins", InitPinsFn, initPinsDesc);
-	ADD_FUNC("pinMode", PinModeFn, pinModeDesc);
-	ADD_FUNC("version", VersionFn, versionDesc);
+	status = InitVersioning(env, exports);
+	assert(status == napi_ok);
+
+	status = InitMethods(env, exports);
+	assert(status == napi_ok);
 
 	return exports;
 }

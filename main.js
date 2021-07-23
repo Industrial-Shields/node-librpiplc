@@ -1,6 +1,6 @@
 const rpiplc = require('./lib/addon.js')
 
-console.log('Version: ' + rpiplc.version());
+console.log('Version: ' + rpiplc.version);
 
 rpiplc.initPins();
 

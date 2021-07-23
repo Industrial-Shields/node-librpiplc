@@ -12,6 +12,5 @@ napi_value DigitalReadFn(napi_env env, napi_callback_info info);
 napi_value DigitalWriteFn(napi_env env, napi_callback_info info);
 napi_value InitPinsFn(napi_env env, napi_callback_info info);
 napi_value PinModeFn(napi_env env, napi_callback_info info);
-napi_value VersionFn(napi_env env, napi_callback_info info);
 
 #endif
