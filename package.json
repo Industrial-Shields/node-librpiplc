@@ -1,20 +1,25 @@
 {
-	"name": "@industrialshields/rpiplc",
-	"version": "1.0.0",
-	"description": "Industrial Shields RaspberryPI based PLC library",
-	"main": "./lib/addon.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Industrial-Shields/rpiplc-node-addon"
-	},
-	"scripts": {
-		"test": "node test/basic.js",
-		"version": "./bin/update-version-files"
-	},
-	"gypfile": true,
-	"author": "Industrial Shields by Boot&Work Corp. S.L. <industrialshields@industrialshields.com>",
-	"license": "EUPL-1.2",
-	"dependencies": {
-		"bindings": "^1.5.0"
-	}
+  "name": "@industrialshields/rpiplc",
+  "version": "1.0.0",
+  "description": "Industrial Shields RaspberryPI based PLC library",
+  "main": "./lib/addon.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Industrial-Shields/rpiplc-node-addon.git"
+  },
+  "scripts": {
+    "test": "node test/basic.js",
+    "version": "./bin/update-version-files",
+    "install": "node-gyp rebuild"
+  },
+  "gypfile": true,
+  "author": "Industrial Shields by Boot&Work Corp. S.L. <industrialshields@industrialshields.com>",
+  "license": "EUPL-1.2",
+  "dependencies": {
+    "bindings": "^1.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Industrial-Shields/rpiplc-node-addon/issues"
+  },
+  "homepage": "https://www.industrialshields.com"
 }
