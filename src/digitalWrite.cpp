@@ -38,7 +38,7 @@ napi_value DigitalWriteFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_uint32(env, argv[1], &value);
 	assert(status == napi_ok);
 
-	pinMode(pin, value);
+	digitalWrite(pin, value);
 
 	return nullptr;
 }

@@ -18,6 +18,35 @@ napi_status InitVersioning(napi_env env, napi_value exports) {
 	return napi_define_properties(env, exports, numDescriptors, descriptors);
 }
 
+napi_status InitConstants(napi_env env, napi_value exports) {
+	napi_status status;
+
+	napi_value cINPUT;
+	status = napi_create_int32(env, INPUT, &cINPUT);
+	assert(status == napi_ok);
+
+	napi_value cOUTPUT;
+	status = napi_create_int32(env, OUTPUT, &cOUTPUT);
+	assert(status == napi_ok);
+
+	napi_value cLOW;
+	status = napi_create_int32(env, 0, &cLOW);
+	assert(status == napi_ok);
+
+	napi_value cHIGH;
+	status = napi_create_int32(env, 1, &cHIGH);
+	assert(status == napi_ok);
+
+	const napi_property_descriptor descriptors[] = {
+		{ "INPUT", nullptr, nullptr, nullptr, nullptr, cINPUT, napi_default, nullptr },
+		{ "OUTPUT", nullptr, nullptr, nullptr, nullptr, cOUTPUT, napi_default, nullptr },
+		{ "LOW", nullptr, nullptr, nullptr, nullptr, cLOW, napi_default, nullptr },
+		{ "HIGH", nullptr, nullptr, nullptr, nullptr, cHIGH, napi_default, nullptr },
+	};
+	const int numDescriptors = sizeof(descriptors) / sizeof(napi_property_descriptor);
+	return napi_define_properties(env, exports, numDescriptors, descriptors);
+}
+
 napi_status InitMethods(napi_env env, napi_value exports) {
 	const napi_property_descriptor descriptors[] = {
 		{ "analogRead", nullptr, AnalogReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -36,6 +65,9 @@ napi_value Init(napi_env env, napi_value exports) {
 	napi_status status;
 
 	status = InitVersioning(env, exports);
+	assert(status == napi_ok);
+
+	status = InitConstants(env, exports);
 	assert(status == napi_ok);
 
 	status = InitMethods(env, exports);
