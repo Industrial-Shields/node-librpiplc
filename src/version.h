@@ -4,7 +4,7 @@
 
 static const uint16_t AppVersionMajor = 1;
 static const uint16_t AppVersionMinor = 0;
-static const uint16_t AppVersionPatch = 0;
-static const char  AppVersion[] = "1.0.0";
+static const uint16_t AppVersionPatch = 1;
+static const char  AppVersion[] = "1.0.1";
 
 #endif
