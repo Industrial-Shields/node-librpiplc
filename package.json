@@ -1,6 +1,6 @@
 {
   "name": "@industrialshields/rpiplc",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Industrial Shields RaspberryPI based PLC library",
   "main": "./lib/addon.js",
   "repository": {

@@ -3,8 +3,8 @@
 #define __VERSION_H__
 
 static const uint16_t AppVersionMajor = 1;
-static const uint16_t AppVersionMinor = 0;
-static const uint16_t AppVersionPatch = 1;
-static const char  AppVersion[] = "1.0.1";
+static const uint16_t AppVersionMinor = 1;
+static const uint16_t AppVersionPatch = 0;
+static const char  AppVersion[] = "1.1.0";
 
 #endif
