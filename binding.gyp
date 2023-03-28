@@ -20,4 +20,36 @@
 			],
 		},
 	],
+	"actions_before_build": [
+    			{
+      				"action_name": "Clone and build rpiplc-lib library",
+      				"inputs": [],
+      				"outputs": [],
+      				"action": [
+        				{
+          					"action_name": "Clone rpiplc-lib repository",
+          					"inputs": [],
+          					"outputs": [],
+          					"action": ["git", "clone", "https://github.com/Industrial-Shields/rpiplc-lib.git"]
+        				},
+        				{
+         					"action_name": "Build rpiplc-lib library",
+          					"inputs": [],
+          					"outputs": [],
+          					"action": [
+            						{
+								"action_name": "Change_directory", "action": ["cd", "rpiplc-lib"]
+							},
+            						{
+								"action_name": "Make", "action": ["make"]
+							},
+           	 					{
+								"action_name": "Install", "action": ["sudo", "make", "install"]
+							},
+            						{
+								"action_name": "Go_back_directory", "action": ["cd", ".."]
+							}
+          				]
+        		},
+      	],
 }
