@@ -12,8 +12,9 @@
 				"src/main.cpp",
 				"src/pinMode.cpp",
 			],
+			"defines": [ "DONT_IMPORT_MAPPING" ],
 			"include_dirs": [
-				"/usr/local/include/rpiplc",
+				"/usr/local/include/librpiplc",
 			],
 			"libraries": [
 				"-lrpiplc",
