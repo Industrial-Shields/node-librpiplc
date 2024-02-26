@@ -1,4 +1,4 @@
-const rpiplc = require('../lib/addon.js')('RPIPLC_42');
+const rpiplc = require('../lib/addon.js')('RPIPLC_V5', 'RPIPLC_19R');
 
 console.log(`Version: ${rpiplc.version}`);
 
