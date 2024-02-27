@@ -25,7 +25,7 @@ You must first install the [librpiplc](https://github.com/Industrial-Shields/lib
 
 2. Assuming you have a full NodeJS environment working, call `npm` to install the package:
 ```
-npm install @industrial-shields/node-librpiplc@<tagname>
+npm install @industrial-shields/librpiplc@<tagname>
 ```
 Where `<tagname>` is the version you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible with our PLCs regardless of it's version.
 You can check the available versions in here: https://github.com/Industrial-Shields/node-librpiplc/tags
@@ -35,7 +35,7 @@ You can check the available versions in here: https://github.com/Industrial-Shie
 ## API
 To start using the library, you need to import it with the following statement:
 ```
-const rpiplc = require("@industrialshields/node-librpiplc")("VERSION_NAME", "MODEL_NAME");
+const rpiplc = require("@industrial-shields/librpiplc")("VERSION_NAME", "MODEL_NAME");
 
 
 // Or, in ESM modules:

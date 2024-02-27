@@ -1,6 +1,6 @@
 {
-  "name": "@industrialshields/librpiplc",
-  "version": "2.0.0",
+  "name": "@industrial-shields/librpiplc",
+  "version": "3.0.0",
   "description": "Industrial Shields librpiplc bindings for NodeJS",
   "main": "./lib/addon.js",
   "repository": {
