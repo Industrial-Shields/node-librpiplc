@@ -1,10 +1,11 @@
-# rpiplc-node-addon
+# node-librpiplc
 
 ### by Industrial Shields
-rpiplc-node-addon implements some common applications on industrial environments for Raspberry based Industrial Shields PLCs. It performs the following functions:
-* Analog reads and writes
+**node-librpiplc** provides a NodeJS wrapper for the librpiplc C library, enabling JavaScript applications to interface with the GPIOs of Raspberry Pi based Industrial Shields PLCs:
+* Analog reads and write
 * Digital reads and writes
 * Relay controlling
+
 
 
 ## Prerequisites
@@ -12,9 +13,9 @@ rpiplc-node-addon implements some common applications on industrial environments
 ### One of our PLCs: https://www.industrialshields.com/
 
 
-### Installing rpiplc-lib
+### Installing librpiplc
 
-You must first install the [rpiplc-lib](https://github.com/Industrial-Shields/rpiplc-lib), as this library depends on it.
+You must first install the [librpiplc](https://github.com/Industrial-Shields/librpiplc), as this library depends on it.
 
 
 
@@ -27,7 +28,7 @@ You must first install the [rpiplc-lib](https://github.com/Industrial-Shields/rp
 npm install @industrial-shields/node-librpiplc@<tagname>
 ```
 Where `<tagname>` is the version you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible with our PLCs regardless of it's version.
-You can check the available versions in here: https://github.com/Industrial-Shields/rpiplc-node-addon/tags
+You can check the available versions in here: https://github.com/Industrial-Shields/node-librpiplc/tags
 
 
 
