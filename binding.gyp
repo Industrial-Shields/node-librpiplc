@@ -8,13 +8,13 @@
 				"src/delay.cpp",
 				"src/digitalRead.cpp",
 				"src/digitalWrite.cpp",
-				"src/initPins.cpp",
+				"src/initExpandedGPIO.cpp",
 				"src/main.cpp",
 				"src/pinMode.cpp",
 			],
 			"defines": [ "DONT_IMPORT_MAPPING" ],
 			"include_dirs": [
-				"/usr/local/include/librpiplc",
+				"/usr/local/include/librpiplc/include",
 			],
 			"libraries": [
 				"-lrpiplc",

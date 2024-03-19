@@ -10,7 +10,7 @@ napi_value AnalogWriteFn(napi_env env, napi_callback_info info);
 napi_value DelayFn(napi_env env, napi_callback_info info);
 napi_value DigitalReadFn(napi_env env, napi_callback_info info);
 napi_value DigitalWriteFn(napi_env env, napi_callback_info info);
-napi_value InitPinsFn(napi_env env, napi_callback_info info);
+napi_value InitExpandedGPIOFn(napi_env env, napi_callback_info info);
 napi_value PinModeFn(napi_env env, napi_callback_info info);
 
 #endif

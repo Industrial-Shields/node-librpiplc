@@ -54,7 +54,7 @@ napi_status InitMethods(napi_env env, napi_value exports) {
 		{ "delay", nullptr, DelayFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalRead", nullptr, DigitalReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalWrite", nullptr, DigitalWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
-		{ "initPins", nullptr, InitPinsFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "initExpandedGPIO", nullptr, InitExpandedGPIOFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "pinMode", nullptr, PinModeFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 	};
 	const int numDescriptors = sizeof(descriptors) / sizeof(napi_property_descriptor);
