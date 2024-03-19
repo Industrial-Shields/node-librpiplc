@@ -3,3 +3,5 @@ build/
 test.log
 *.tgz
 *.zip
+/.ccls
+/.ccls-cache/
