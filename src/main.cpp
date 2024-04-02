@@ -51,6 +51,7 @@ napi_status InitMethods(napi_env env, napi_value exports) {
 	const napi_property_descriptor descriptors[] = {
 		{ "analogRead", nullptr, AnalogReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "analogWrite", nullptr, AnalogWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "analogWriteSetFrequency", nullptr, AnalogWriteSetFrequencyFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "delay", nullptr, DelayFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalRead", nullptr, DigitalReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalWrite", nullptr, DigitalWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },

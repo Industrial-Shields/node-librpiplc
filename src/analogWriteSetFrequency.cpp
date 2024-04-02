@@ -1,6 +1,6 @@
 #include "fn.h"
 
-napi_value PinModeFn(napi_env env, napi_callback_info info) {
+napi_value AnalogWriteSetFrequencyFn(napi_env env, napi_callback_info info) {
 	napi_status status;
 	napi_valuetype argtype;
 
@@ -34,14 +34,14 @@ napi_value PinModeFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_uint32(env, argv[0], &pin);
 	assert(status == napi_ok);
 
-	uint32_t mode;
-	status = napi_get_value_uint32(env, argv[1], &mode);
+	uint32_t desired_freq;
+	status = napi_get_value_uint32(env, argv[1], &desired_freq);
 	assert(status == napi_ok);
 
-        int pinmode_ret = pinMode(pin, mode);
+        int write_ret = analogWriteSetFrequency(pin, desired_freq);
 	napi_value ret;
-	status = napi_create_int32(env, pinmode_ret, &ret);
+	status = napi_create_int32(env, write_ret, &ret);
 	assert(status == napi_ok);
-
+	
 	return ret;
 }
