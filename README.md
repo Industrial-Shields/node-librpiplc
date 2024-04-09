@@ -1,11 +1,14 @@
 # node-librpiplc
-
 ### by Industrial Shields
+
 **node-librpiplc** provides a NodeJS wrapper for the librpiplc C library, enabling JavaScript applications to interface with the GPIOs of Raspberry Pi based Industrial Shields PLCs:
 * Analog reads and write
 * Digital reads and writes
 * Relay controlling
 
+
+## Licensing
+This library is dual-licensed under the EUPL-1.2 (for backwards compatibility) and the LGPL-3.0-or-later. The test programs are licensed under the GPL-3.0-or-later.
 
 
 ## Prerequisites

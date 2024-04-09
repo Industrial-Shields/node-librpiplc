@@ -12,6 +12,7 @@
 				"src/initExpandedGPIO.cpp",
 				"src/main.cpp",
 				"src/pinMode.cpp",
+				"src/version.cpp",
 			],
 			"defines": [ "DONT_IMPORT_MAPPING" ],
 			"include_dirs": [

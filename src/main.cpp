@@ -1,3 +1,29 @@
+/**
+ * Copyright (c) 2024 Industrial Shields. All rights reserved
+ *
+ * This file is part of node-librpiplc.
+ *
+ * EUPL-1.2 notice:
+ * LIBARY is licensed under the EUPL,
+ * with extension of article 5 (compatibility clause) to any licence
+ * for distributing derivative works that have been produced by the
+ * normal use of the Work as a library.
+ *
+ * LGPL-3.0-or-later notice:
+ * node-librpiplc is free software: you can redistribute
+ * it and/or modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either version
+ * 3 of the License, or (at your option) any later version.
+ *
+ * node-librpiplc is distributed in the hope that it will
+ * be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "fn.h"
 #include "version.h"
 
@@ -7,13 +33,31 @@
 napi_status InitVersioning(napi_env env, napi_value exports) {
 	napi_status status;
 
-	napi_value version;
-	status = napi_create_string_utf8(env, AppVersion, NAPI_AUTO_LENGTH, &version);
+
+	napi_value napiCVersionMajor;
+	status = napi_create_int32(env, cVersionMajor, &napiCVersionMajor);
+	assert(status == napi_ok);
+
+	napi_value napiCVersionMinor;
+	status = napi_create_int32(env, cVersionMinor, &napiCVersionMinor);
+	assert(status == napi_ok);
+
+	napi_value napiCVersionPatch;
+	status = napi_create_int32(env, cVersionPatch, &napiCVersionPatch);
+	assert(status == napi_ok);
+
+	napi_value napiCVersion;
+	status = napi_create_string_utf8(env, cVersion, NAPI_AUTO_LENGTH, &napiCVersion);
 	assert(status == napi_ok);
 
 	const napi_property_descriptor descriptors[] = {
-		{ "version", nullptr, nullptr, nullptr, nullptr, version, napi_default, nullptr },
+		{ "cVersionMajor", nullptr, nullptr, nullptr, nullptr, napiCVersionMajor, napi_default, nullptr },
+		{ "cVersionMinor", nullptr, nullptr, nullptr, nullptr, napiCVersionMinor, napi_default, nullptr },
+		{ "cVersionPatch", nullptr, nullptr, nullptr, nullptr, napiCVersionPatch, napi_default, nullptr },
+		{ "cVersion", nullptr, nullptr, nullptr, nullptr, napiCVersion, napi_default, nullptr }
 	};
+
+
 	const int numDescriptors = sizeof(descriptors) / sizeof(napi_property_descriptor);
 	return napi_define_properties(env, exports, numDescriptors, descriptors);
 }
