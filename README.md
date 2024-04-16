@@ -79,7 +79,7 @@ delay(): rpiplc.delay(MS) # Where MS is the number of milliseconds to block the 
 ```
 RPIPLC_V3 (deprecated)
 RPIPLC_V4
-RPIPLC_V5
+RPIPLC_V6
 ```
 
 

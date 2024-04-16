@@ -15,15 +15,19 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-const rpiplc = require('../../lib/addon.js')('RPIPLC_V5', 'RPIPLC_19R');
+const rpiplc = require('../../lib/addon.js')('RPIPLC_V6', 'RPIPLC_19R');
 
 console.log(`librpiplc version: ${rpiplc.cVersion}, node-librpiplc version: ${rpiplc.nodeJSVersion}`);
 
+rpiplc.pinMode('I0.0', rpiplc.INPUT);
 rpiplc.pinMode('Q0.0', rpiplc.OUTPUT);
+rpiplc.pinMode('Q0.1', rpiplc.OUTPUT);
 
-while (true) {
-	rpiplc.digitalWrite('Q0.0', rpiplc.HIGH);
-	rpiplc.delay(1000);
-	rpiplc.digitalWrite('Q0.0', rpiplc.LOW);
-	rpiplc.delay(1000);
-}
+const value = rpiplc.digitalRead('I0.0');
+console.log(`Read value: ${value}`);
+
+rpiplc.delay(1000);
+
+console.log(`Set outputs`);
+rpiplc.digitalWrite('Q0.0', value);
+rpiplc.digitalWrite('Q0.1', rpiplc.HIGH);

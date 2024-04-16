@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-const rpiplc = require('../../lib/addon.js')('RPIPLC_V5', 'RPIPLC_19R');
+const rpiplc = require('../../lib/addon.js')('RPIPLC_V6', 'RPIPLC_19R');
 
 console.log(`librpiplc version: ${rpiplc.cVersion}, node-librpiplc version: ${rpiplc.nodeJSVersion}`);
 
