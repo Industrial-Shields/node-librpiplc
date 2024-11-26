@@ -16,6 +16,8 @@
 			],
 			"defines": [ "DONT_IMPORT_MAPPING" ],
 			"include_dirs": [
+				"/usr/include/librpiplc/include",
+				"/usr/include/librpiplc/include/include",
 				"/usr/local/include/librpiplc/include",
 				"/usr/local/include/librpiplc/include/include",
 			],
