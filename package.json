@@ -10,7 +10,8 @@
   "scripts": {
     "test": "node test/basic.js",
     "version": "./bin/update-version-files",
-    "install": "node-gyp rebuild"
+    "install": "node-gyp configure rebuild",
+    "install-debug": "node-gyp --debug configure rebuild"
   },
   "gypfile": true,
   "author": "Industrial Shields <support@industrialshields.com>",
