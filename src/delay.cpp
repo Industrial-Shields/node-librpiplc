@@ -24,7 +24,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fn.h"
+#include "functions.h"
 
 napi_value DelayFn(napi_env env, napi_callback_info info) {
 	napi_status status;
@@ -52,7 +52,7 @@ napi_value DelayFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_uint32(env, argv[0], &ms);
 	assert(status == napi_ok);
 
-	delay(ms);
+	_delay(ms);
 
 	return nullptr;
 }

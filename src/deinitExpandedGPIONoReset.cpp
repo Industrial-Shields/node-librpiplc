@@ -26,48 +26,23 @@
 
 #include "functions.h"
 
-napi_value PinModeFn(napi_env env, napi_callback_info info) {
+napi_value DeinitExpandedGPIONoResetFn(napi_env env, napi_callback_info info) {
 	napi_status status;
-	napi_valuetype argtype;
 
-	size_t argc = 2;
-	napi_value argv[2];
+	size_t argc = 0;
+	napi_value argv[1];
 	status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 	assert(status == napi_ok);
 
-	if (argc < 2) {
+	if (argc != 0) {
 		napi_throw_type_error(env, nullptr, "Wrong number of arguments");
 		return nullptr;
 	}
 
-	status = napi_typeof(env, argv[0], &argtype);
+	int ret = _deinitExpandedGPIONoReset();
+	napi_value node_ret;
+	status = napi_create_int32(env, ret, &node_ret);
 	assert(status == napi_ok);
 
-	if (argtype != napi_number) {
-		napi_throw_type_error(env, nullptr, "Wrong argument");
-		return nullptr;
-	}
-
-	status = napi_typeof(env, argv[1], &argtype);
-	assert(status == napi_ok);
-
-	if (argtype != napi_number) {
-		napi_throw_type_error(env, nullptr, "Wrong argument");
-		return nullptr;
-	}
-
-	uint32_t pin;
-	status = napi_get_value_uint32(env, argv[0], &pin);
-	assert(status == napi_ok);
-
-	uint32_t mode;
-	status = napi_get_value_uint32(env, argv[1], &mode);
-	assert(status == napi_ok);
-
-        int pinmode_ret = _pinMode(pin, mode);
-	napi_value ret;
-	status = napi_create_int32(env, pinmode_ret, &ret);
-	assert(status == napi_ok);
-
-	return ret;
+	return nullptr;
 }
