@@ -39,10 +39,15 @@ napi_value DeinitExpandedGPIONoResetFn(napi_env env, napi_callback_info info) {
 		return nullptr;
 	}
 
-	int ret = _deinitExpandedGPIONoReset();
-	napi_value node_ret;
-	status = napi_create_int32(env, ret, &node_ret);
-	assert(status == napi_ok);
+	if (_deinitExpandedGPIONoReset) {
+		int ret = _deinitExpandedGPIONoReset();
+		napi_value node_ret;
+		status = napi_create_int32(env, ret, &node_ret);
+		assert(status == napi_ok);
+	}
+	else {
+		napi_throw_type_error(env, nullptr, "The function doesn't exist in this version of the library");
+	}
 
 	return nullptr;
 }
