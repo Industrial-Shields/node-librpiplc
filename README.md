@@ -80,11 +80,18 @@ delay(): rpiplc.delay(MS) # Where MS is the number of milliseconds to block the 
 RPIPLC_V3 (deprecated)
 RPIPLC_V4
 RPIPLC_V6
+
+UPSAFEPI_V6
+
+GATEBERRY_V9
+
+TOUCHBERRY_PI_V1
 ```
 
 
 ### <a name="available-models"></a>Available PLC models
 ```
+RPIPLC_CPU
 RPIPLC_19R
 RPIPLC_21
 RPIPLC_38AR
@@ -96,4 +103,10 @@ RPIPLC_54ARA
 RPIPLC_57AAR
 RPIPLC_57R
 RPIPLC_58
+
+UPSAFEPI (for UPSafePis)
+
+GATEBERRY (for GateBerries)
+
+TOUCHBERRY_PI (for TouchBerry Pis)
 ```
