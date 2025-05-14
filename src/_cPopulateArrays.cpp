@@ -27,9 +27,11 @@
 #include "functions.h"
 #include <string>
 
+static uint8_t emptyArray[0];
+
 napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 	assert(_peripherals_struct != nullptr);
-	
+
 	napi_status status;
   	napi_valuetype argtype;
 	size_t str_len;
@@ -77,7 +79,7 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		_peripherals_struct->numArrayMCP23008 = sizeof(mcp23008_array) / sizeof(mcp23008_array[0]);
 	}
 	else {
-		_peripherals_struct->arrayMCP23008 = nullptr;
+		_peripherals_struct->arrayMCP23008 = emptyArray;
 		_peripherals_struct->numArrayMCP23008 = 0;
 	}
 
@@ -94,7 +96,7 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		    sizeof(ads1015_array) / sizeof(ads1015_array[0]);
 	}
 	else {
-		_peripherals_struct->arrayADS1015 = nullptr;
+		_peripherals_struct->arrayADS1015 = emptyArray;
 		_peripherals_struct->numArrayADS1015 = 0;
 	}
 
@@ -106,7 +108,7 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		    sizeof(pca9685_array) / sizeof(pca9685_array[0]);
 	}
 	else {
-		_peripherals_struct->arrayPCA9685 = nullptr;
+		_peripherals_struct->arrayPCA9685 = emptyArray;
 		_peripherals_struct->numArrayPCA9685 = 0;
 	}
 
@@ -126,11 +128,11 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		}
 	}
 	else {
-		_peripherals_struct->arrayLTC2309 = nullptr;
+		_peripherals_struct->arrayLTC2309 = emptyArray;
 		_peripherals_struct->numArrayLTC2309 = 0;
 	}
 
-	_peripherals_struct->arrayMCP23017 = nullptr;
+	_peripherals_struct->arrayMCP23017 = emptyArray;
 	_peripherals_struct->numArrayMCP23017 = 0;
 
 	return nullptr;
