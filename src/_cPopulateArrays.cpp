@@ -85,6 +85,12 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		_peripherals_struct->numArrayADS1015 =
 		    sizeof(ads1015_array) / sizeof(ads1015_array[0]);
 	}
+	else if (version_name == "TOUCHBERRY_PI_V1") {
+		static uint8_t ads1015_array[] = {0x49};
+		_peripherals_struct->arrayADS1015 = ads1015_array;
+		_peripherals_struct->numArrayADS1015 =
+		    sizeof(ads1015_array) / sizeof(ads1015_array[0]);
+	}
 	else {
 		_peripherals_struct->arrayADS1015 = nullptr;
 		_peripherals_struct->numArrayADS1015 = 0;
