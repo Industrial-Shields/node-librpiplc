@@ -52,10 +52,10 @@ napi_value InitExpandedGPIOFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_bool(env, argv[0], &restart_peripherals);
 	assert(status == napi_ok);
 
-	int ret = _initExpandedGPIO(restart_peripherals);
-	napi_value node_ret;
-	status = napi_create_int32(env, ret, &node_ret);
+	int value = _initExpandedGPIO(restart_peripherals);
+	napi_value ret;
+	status = napi_create_int32(env, value, &ret);
 	assert(status == napi_ok);
 
-	return nullptr;
+	return ret;
 }
