@@ -52,9 +52,10 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 	}
 	status = napi_get_value_string_utf8(env, argv[0], nullptr, 0, &str_len);
 	assert(status == napi_ok);
-	std::string version_name(str_len, '\0');
+	std::string version_name(str_len + 1, '\0');
 	status = napi_get_value_string_utf8(env, argv[0], version_name.data(), version_name.size(), &str_len);
 	assert(status == napi_ok);
+	version_name.pop_back(); // Remove the terminating null-character
 
 	status = napi_typeof(env, argv[1], &argtype);
 	assert(status == napi_ok);
@@ -64,9 +65,10 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 	}
 	status = napi_get_value_string_utf8(env, argv[1], nullptr, 0, &str_len);
 	assert(status == napi_ok);
-	std::string model_name(str_len, '\0');
+	std::string model_name(str_len + 1, '\0');
 	status = napi_get_value_string_utf8(env, argv[1], model_name.data(), model_name.size(), &str_len);
 	assert(status == napi_ok);
+	model_name.pop_back(); // Remove the terminating null-character
 
 	if (version_name == "RPIPLC_V3" || version_name == "RPIPLC_V4" ||
 	    version_name == "RPIPLC_V6") {
