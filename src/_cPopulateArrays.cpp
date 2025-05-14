@@ -70,8 +70,8 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 	assert(status == napi_ok);
 	model_name.pop_back(); // Remove the terminating null-character
 
-	if (version_name == "RPIPLC_V3" || version_name == "RPIPLC_V4" ||
-	    version_name == "RPIPLC_V6") {
+	if (version_name == "RPIPLC_V6" || version_name == "RPIPLC_V4" ||
+	    version_name == "RPIPLC_V3") {
 		static uint8_t mcp23008_array[] = {0x20, 0x21};
 		_peripherals_struct->arrayMCP23008 = mcp23008_array;
 		_peripherals_struct->numArrayMCP23008 = sizeof(mcp23008_array) / sizeof(mcp23008_array[0]);
@@ -98,8 +98,8 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		_peripherals_struct->numArrayADS1015 = 0;
 	}
 
-	if (version_name == "RPIPLC_V3" || version_name == "RPIPLC_V4" ||
-	    version_name == "RPIPLC_V6") {
+	if (version_name == "RPIPLC_V6" || version_name == "RPIPLC_V4" ||
+	    version_name == "RPIPLC_V3") {
 		static uint8_t pca9685_array[] = {0x40, 0x41};
 		_peripherals_struct->arrayPCA9685 = pca9685_array;
 		_peripherals_struct->numArrayPCA9685 =
@@ -110,7 +110,7 @@ napi_value _cPopulateArraysFn(napi_env env, napi_callback_info info) {
 		_peripherals_struct->numArrayPCA9685 = 0;
 	}
 
-	if (version_name == "RPIPLC_V4" || version_name == "RPIPLC_V6") {
+	if (version_name == "RPIPLC_V6" || version_name == "RPIPLC_V4") {
 		if (model_name == "RPIPLC_21" || model_name == "RPIPLC_19R" ||
 		    model_name == "RPIPLC") {
 			static uint8_t ltc2309_array[] = {0x08, 0x0A};
