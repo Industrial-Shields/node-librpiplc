@@ -17,6 +17,7 @@
 				"src/main.cpp",
 				"src/pinMode.cpp",
 			],
+			"cflags": [ "-Wall -Wextra -Werror -fanalyzer" ]
 		},
 	],
 }
