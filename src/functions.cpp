@@ -51,20 +51,14 @@ int loadSymbols(bool isOlderThan4) {
 	}
 
 	if (!isOlderThan4) {
-		_initExpandedGPIO = (int (*)(bool)) dlsym(rpiplc_dl, "initExpandedGPIOV2");
-		if (_initExpandedGPIO == nullptr) {
-			return -1;
-		}
 		_peripherals_struct = (peripherals_t*) dlsym(rpiplc_dl, "_peripherals_struct");
 		if (_peripherals_struct == nullptr) {
 			return -1;
 		}
 	}
-	else {
-		_initExpandedGPIO = (int (*)(bool)) dlsym(rpiplc_dl, "initExpandedGPIO");
-		if (_initExpandedGPIO == nullptr) {
-			return -1;
-		}
+	_initExpandedGPIO = (int (*)(bool)) dlsym(rpiplc_dl, "initExpandedGPIO");
+	if (_initExpandedGPIO == nullptr) {
+		return -1;
 	}
 
 	_deinitExpandedGPIO = (int (*)()) dlsym(rpiplc_dl, "deinitExpandedGPIO");
