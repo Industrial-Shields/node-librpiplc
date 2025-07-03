@@ -5,6 +5,7 @@
 * Analog reads and write
 * Digital reads and writes
 * Relay controlling
+* Other pins (like DE/RE)
 
 
 ## Licensing
@@ -18,7 +19,7 @@ This library is dual-licensed under the EUPL-1.2 (for backwards compatibility) a
 
 ### Installing librpiplc
 
-You must first install the [librpiplc](https://github.com/Industrial-Shields/librpiplc), as this library depends on it.
+You must first install the [librpiplc](https://github.com/Industrial-Shields/librpiplc) library, as this library depends on it.
 
 
 
@@ -26,12 +27,14 @@ You must first install the [librpiplc](https://github.com/Industrial-Shields/lib
 
 1. Go to the directory where you want to install the NPM package.
 
-2. Assuming you have a full NodeJS environment working, call `npm` to install the package:
+1. Assuming you have a full NodeJS environment working, call `npm` to install the package:
 ```
 npm install @industrial-shields/librpiplc@<tagname>
 ```
-Where `<tagname>` is the version you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible with our PLCs regardless of it's version.
-You can check the available versions in here: https://github.com/Industrial-Shields/node-librpiplc/tags
+Where `<tagname>` is the version you wish to download. Before this unification, you had to choose
+between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible
+with our PLCs regardless of it's version. You can check the available versions in here:
+https://github.com/Industrial-Shields/node-librpiplc/tags
 
 
 
@@ -42,14 +45,20 @@ const rpiplc = require("@industrial-shields/librpiplc")("VERSION_NAME", "MODEL_N
 
 
 // Or, in ESM modules:
-import rpiplc from '../lib/addon.js';
+import librpiplc from '../lib/addon.js';
 
-const rpiplc = rpiplc("VERSION_NAME", "MODEL_NAME");
+const rpiplc = librpiplc("VERSION_NAME", "MODEL_NAME");
 ```
 
-Finally, it is a good practice to initialize the pins you want to use as INPUTS or OUTPUTS. You can do so with the `rpiplc.pinMode(pin_name, mode)` function. For example, if you want to read from the **I0.2** input:
+Finally, it is a good practice to initialize the pins you want to use as inputs or outputs. You can
+do so with the `rpiplc.pinMode(pin_name, mode)` function. For example, if you want to read from the
+**I0.2** input:
+``` node
+rpiplc.pinMode("I0.2", rpiplc.INPUT);
 ```
-rpiplc.pinMode("I0.2", rpiplc.INPUT)
+or write to the **Q0.0** output:
+``` node
+rpiplc.pinMode("Q0.0", rpiplc.OUTPUT);
 ```
 
 The functions to read and write are the following:
@@ -80,11 +89,18 @@ delay(): rpiplc.delay(MS) # Where MS is the number of milliseconds to block the 
 RPIPLC_V3 (deprecated)
 RPIPLC_V4
 RPIPLC_V6
+
+UPSAFEPI_V6
+
+GATEBERRY_V9
+
+TOUCHBERRY_PI_V1
 ```
 
 
 ### <a name="available-models"></a>Available PLC models
 ```
+RPIPLC_CPU
 RPIPLC_19R
 RPIPLC_21
 RPIPLC_38AR
@@ -96,4 +112,10 @@ RPIPLC_54ARA
 RPIPLC_57AAR
 RPIPLC_57R
 RPIPLC_58
+
+UPSAFEPI (for UPSafePis)
+
+GATEBERRY (for GateBerries)
+
+TOUCHBERRY_PI (for TouchBerry Pis)
 ```

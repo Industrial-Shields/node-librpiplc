@@ -24,7 +24,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fn.h"
+#include "functions.h"
 
 napi_value DigitalReadFn(napi_env env, napi_callback_info info) {
 	napi_status status;
@@ -52,7 +52,7 @@ napi_value DigitalReadFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_uint32(env, argv[0], &pin);
 	assert(status == napi_ok);
 
-	uint32_t value = digitalRead(pin);
+	uint32_t value = _digitalRead(pin);
 	napi_value ret;
 	status = napi_create_uint32(env, value, &ret);
 	assert(status == napi_ok);

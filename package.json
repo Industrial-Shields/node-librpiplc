@@ -1,6 +1,6 @@
 {
   "name": "@industrial-shields/librpiplc",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Industrial Shields librpiplc bindings for NodeJS",
   "main": "./lib/addon.js",
   "repository": {
@@ -10,7 +10,9 @@
   "scripts": {
     "test": "node test/basic.js",
     "version": "./bin/update-version-files",
-    "install": "node-gyp rebuild"
+    "install": "./check_librpiplc.sh && node-gyp configure rebuild",
+    "install-debug": "./check_librpiplc.sh && node-gyp --debug configure rebuild",
+    "clean": "rm -rf build/"
   },
   "gypfile": true,
   "author": "Industrial Shields <support@industrialshields.com>",

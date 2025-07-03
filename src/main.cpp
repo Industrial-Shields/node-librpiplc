@@ -24,30 +24,38 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fn.h"
-#include "version.h"
+#include "functions.h"
 
 #include <assert.h>
-#include <node_api.h>
 
 napi_status InitVersioning(napi_env env, napi_value exports) {
+	const int* cVersionMajor = (const int*)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION_MAJOR_NUM");
+	assert(cVersionMajor != nullptr && "LIB_RPIPLC_VERSION_MAJOR_NUM not found");
+	const int* cVersionMinor = (const int*)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION_MINOR_NUM");
+	assert(cVersionMinor != nullptr && "LIB_RPIPLC_VERSION_MINOR_NUM not found");
+	const int* cVersionPatch = (const int*)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION_PATCH_NUM");
+	assert(cVersionPatch != nullptr && "LIB_RPIPLC_VERSION_PATCH_NUM not found");
+	const char** cVersion = (const char**)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION");
+	assert(cVersion != nullptr && "LIB_RPIPLC_VERSION not found");
+
+
 	napi_status status;
 
 
 	napi_value napiCVersionMajor;
-	status = napi_create_int32(env, cVersionMajor, &napiCVersionMajor);
+	status = napi_create_int32(env, *cVersionMajor, &napiCVersionMajor);
 	assert(status == napi_ok);
 
 	napi_value napiCVersionMinor;
-	status = napi_create_int32(env, cVersionMinor, &napiCVersionMinor);
+	status = napi_create_int32(env, *cVersionMinor, &napiCVersionMinor);
 	assert(status == napi_ok);
 
 	napi_value napiCVersionPatch;
-	status = napi_create_int32(env, cVersionPatch, &napiCVersionPatch);
+	status = napi_create_int32(env, *cVersionPatch, &napiCVersionPatch);
 	assert(status == napi_ok);
 
 	napi_value napiCVersion;
-	status = napi_create_string_utf8(env, cVersion, NAPI_AUTO_LENGTH, &napiCVersion);
+	status = napi_create_string_utf8(env, *cVersion, NAPI_AUTO_LENGTH, &napiCVersion);
 	assert(status == napi_ok);
 
 	const napi_property_descriptor descriptors[] = {
@@ -66,11 +74,11 @@ napi_status InitConstants(napi_env env, napi_value exports) {
 	napi_status status;
 
 	napi_value cINPUT;
-	status = napi_create_int32(env, INPUT, &cINPUT);
+	status = napi_create_int32(env, 0, &cINPUT);
 	assert(status == napi_ok);
 
 	napi_value cOUTPUT;
-	status = napi_create_int32(env, OUTPUT, &cOUTPUT);
+	status = napi_create_int32(env, 1, &cOUTPUT);
 	assert(status == napi_ok);
 
 	napi_value cLOW;
@@ -96,6 +104,9 @@ napi_status InitMethods(napi_env env, napi_value exports) {
 		{ "analogRead", nullptr, AnalogReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "analogWrite", nullptr, AnalogWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "analogWriteSetFrequency", nullptr, AnalogWriteSetFrequencyFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "_cPopulateArrays", nullptr, _cPopulateArraysFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "deinitExpandedGPIO", nullptr, DeinitExpandedGPIOFn, nullptr, nullptr, nullptr, napi_default, nullptr },
+		{ "deinitExpandedGPIONoReset", nullptr, DeinitExpandedGPIONoResetFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "delay", nullptr, DelayFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalRead", nullptr, DigitalReadFn, nullptr, nullptr, nullptr, napi_default, nullptr },
 		{ "digitalWrite", nullptr, DigitalWriteFn, nullptr, nullptr, nullptr, napi_default, nullptr },
@@ -106,7 +117,31 @@ napi_status InitMethods(napi_env env, napi_value exports) {
 	return napi_define_properties(env, exports, numDescriptors, descriptors);
 }
 
+void* rpiplc_dl = nullptr;
+
 napi_value Init(napi_env env, napi_value exports) {
+
+	rpiplc_dl = dlopen("librpiplc.so.4", RTLD_NOW);
+	if (rpiplc_dl == nullptr) {
+		rpiplc_dl = dlopen("librpiplc.so", RTLD_NOW);
+	}
+	if (rpiplc_dl == nullptr) {
+		rpiplc_dl = dlopen("librpiplc.so.3", RTLD_NOW);
+	}
+	if (rpiplc_dl == nullptr) {
+		napi_throw_error(env, nullptr, "librpiplc is not installed in this system");
+		return nullptr;
+	}
+
+	const int* cVersionMajor = (const int*)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION_MAJOR_NUM");
+	assert(cVersionMajor != nullptr && "LIB_RPIPLC_VERSION_MAJOR_NUM not found");
+	bool isOlderThan4 = *cVersionMajor < 4;
+	if (loadSymbols(isOlderThan4) != 0) {
+		napi_throw_error(env, nullptr, "Missing librpiplc symbols. Aborting...");
+		return nullptr;
+	}
+
+
 	napi_status status;
 
 	status = InitVersioning(env, exports);

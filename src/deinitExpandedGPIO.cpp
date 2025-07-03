@@ -24,19 +24,25 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __VERSION_H__
-#define __VERSION_H__
+#include "functions.h"
 
-#include <rpiplc.h>
+napi_value DeinitExpandedGPIOFn(napi_env env, napi_callback_info info) {
+	napi_status status;
 
-extern const int cVersionMajor;
-extern const int cVersionMinor;
-extern const int cVersionPatch;
-extern const char* cVersion;
+	size_t argc = 0;
+	napi_value argv[1];
+	status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+	assert(status == napi_ok);
 
-extern const int nodeJSVersionMajor;
-extern const int nodeJSVersionMinor;
-extern const int nodeJSVersionPatch;
-extern const char* nodeJSVersion;
+	if (argc != 0) {
+		napi_throw_type_error(env, nullptr, "Wrong number of arguments");
+		return nullptr;
+	}
 
-#endif
+	int ret = _deinitExpandedGPIO();
+	napi_value node_ret;
+	status = napi_create_int32(env, ret, &node_ret);
+	assert(status == napi_ok);
+
+	return nullptr;
+}

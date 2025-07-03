@@ -24,7 +24,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "fn.h"
+#include "functions.h"
 
 napi_value InitExpandedGPIOFn(napi_env env, napi_callback_info info) {
 	napi_status status;
@@ -52,10 +52,10 @@ napi_value InitExpandedGPIOFn(napi_env env, napi_callback_info info) {
 	status = napi_get_value_bool(env, argv[0], &restart_peripherals);
 	assert(status == napi_ok);
 
-        int32_t ret = initExpandedGPIO(restart_peripherals);
-	napi_value node_ret;
-	status = napi_create_int32(env, ret, &node_ret);
+	int value = _initExpandedGPIO(restart_peripherals);
+	napi_value ret;
+	status = napi_create_int32(env, value, &ret);
 	assert(status == napi_ok);
 
-	return nullptr;
+	return ret;
 }
