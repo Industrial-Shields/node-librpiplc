@@ -136,7 +136,10 @@ napi_value Init(napi_env env, napi_value exports) {
 	const int* cVersionMajor = (const int*)dlsym(rpiplc_dl, "LIB_RPIPLC_VERSION_MAJOR_NUM");
 	assert(cVersionMajor != nullptr && "LIB_RPIPLC_VERSION_MAJOR_NUM not found");
 	bool isOlderThan4 = *cVersionMajor < 4;
-	loadSymbols(isOlderThan4);
+	if (loadSymbols(isOlderThan4) != 0) {
+		napi_throw_error(env, nullptr, "Missing librpiplc symbols. Aborting...");
+		return nullptr;
+	}
 
 
 	napi_status status;
