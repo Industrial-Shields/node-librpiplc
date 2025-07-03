@@ -1,0 +1,12 @@
+node_modules/
+build/
+/test.log
+*.tgz
+*.zip
+/.ccls
+/.ccls-cache/
+/.clang-format
+/.cache/
+/compile_commands.json
+/cliff.toml
+/.stfolder
