@@ -2,11 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1] - 2025-07-07
+
+### 🐛 Bug Fixes
+
+- TouchBerry mapping typos ([b5140fc](b5140fce51c6dc0993f0021b27502990ff41e9f6))
+
+- Add QX mapping that matches TouchBerry serigraphy ([ee65663](ee65663d0981382b6db7b2e7a6d3e52ad697d052))
+
+
+### 💼 Other
+
+- Create .npmignore ([3101a75](3101a75f5d3a2874753c9246d6cbc77d6e01a215))
+
+
 ## [4.0.0] - 2025-07-03
 
 ### 🚀 Features
 
 - Merge branch 'new-pins-enum' ([c8a39c8](c8a39c8b660ab789dd069a5614969179ed921574))
+
+
+### 📚 Documentation
+
+- Add changelog configuration ([b553c51](b553c51c0e44da61976f5f8e802548c8588aff7c))
+
+
+### ⚙️ Miscellaneous Tasks
+
+- Update package-lock.json ([8872540](88725404419f36a01bb2e2a863f2a4628eadaa42))
+
+
+## [archive/new-pins-enum] - 2025-07-03
+
+### 🚀 Features
 
 - Remove initExpandedGPIOV2 ([f94da79](f94da79bbcea5bfaa89bb5c69f2981dafcfda29c))
 
@@ -47,8 +76,6 @@ All notable changes to this project will be documented in this file.
 
 ### 📚 Documentation
 
-- Add changelog configuration ([b553c51](b553c51c0e44da61976f5f8e802548c8588aff7c))
-
 - Update README like node-red-librpiplc ([6f9f183](6f9f1833a66760bdc54da5e305650318907ba117))
 
 - Add available new available versions and models ([a73404f](a73404fa966c79492afb9cdc3e447354ff276559))
@@ -61,8 +88,6 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks
 
-- Update package-lock.json ([8872540](88725404419f36a01bb2e2a863f2a4628eadaa42))
-
 - Add useful CFLAGs to catch errors at compile-time ([81d69a3](81d69a33fdae2b68531839ed4b2aec6764a34fa6))
 
 - Add npm run clean ([91f9f63](91f9f63ef8d4ea815fe1e2cf5aa705f95b44ae77))
@@ -73,6 +98,15 @@ All notable changes to this project will be documented in this file.
 ### 💼 Other
 
 - Bump package version ([c247e62](c247e62aa96631607db43530927dfda7ace3c55d))
+
+
+## [archive/unify-plcs] - 2024-11-26
+
+### 💼 Other
+
+- Add old include dirs to maintain compatibility ([a42d623](a42d623e90794bfd0f35f0ae553d4350b37c5466))
+
+- Add extra pins for RPIPLC V4 and V6 models ([4473160](4473160e0ef5359d69f13b7b061935b904086d44))
 
 
 ## [3.0.0] - 2024-04-24
