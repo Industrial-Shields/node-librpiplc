@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.0.1] - 2025-07-07
+## [4.0.2] - 2025-09-23
+
+### 🐛 Bug Fixes
+
+- Don't declare MCP23008 and LTC2309 for RPIPLC_CPU ([de31951](de31951eff4a8f68d5d619976e29a4d3a6780b0d))
+
+
+### 💼 Other
+
+- Bump library version ([a9d6ac2](a9d6ac267bfd408738e171b5dfff9bf7e721ccb0))
+
+
+## [4.0.1] - 2025-07-08
 
 ### 🐛 Bug Fixes
 
@@ -12,6 +24,8 @@ All notable changes to this project will be documented in this file.
 
 
 ### 💼 Other
+
+- Bump library version ([4ff3e14](4ff3e14f5e28a927484662f8df720d7a26a8ee08))
 
 - Create .npmignore ([3101a75](3101a75f5d3a2874753c9246d6cbc77d6e01a215))
 
